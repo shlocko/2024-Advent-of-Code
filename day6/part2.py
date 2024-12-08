@@ -3,6 +3,14 @@ with open("input.txt", "r") as file:
     lines = file.readlines()
     lines = [line.strip('\n') for line in lines]
 
+startx = 0
+starty = 0
+
+for i, line in enumerate(lines):
+    if '^' in line:
+        startx = line.index('^')
+        starty = i
+
 def to_tup(guard, dir):
     return (guard[0], guard[1], dir)
 
@@ -83,12 +91,8 @@ def simulate(x, y, lines_orig):
     lines = lines_orig[:]
     lines[y] = lines[y][:x] + '#' + lines[y][x+1:]
     dir = 1
-    guard = [0, 0]
+    guard = [startx, starty]
     loop = False
-    for i, line in enumerate(lines):
-        if '^' in line:
-            guard[0] = line.index('^')
-            guard[1] = i
 
 
     locations:list[tuple[int, int, int]] = [to_tup(guard, int(dir))]

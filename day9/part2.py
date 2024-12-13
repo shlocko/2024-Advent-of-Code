@@ -4,12 +4,6 @@ with open("input.txt", "r") as file:
 
 data = lines[0].strip('\n')
 
-def find_next_empty(arr):
-    for i, item in enumerate(arr):
-        if item[0] == -1:
-            return i
-    return -1
-
 
 blocks = []
 block_id = 0
@@ -29,8 +23,6 @@ print(blocks)
 
 comp_blocks = blocks[:]
 
-done = False
-
 for ob in reversed(blocks):
     if ob[0] == -1: continue
     for k, block in enumerate(comp_blocks):
@@ -39,8 +31,6 @@ for ob in reversed(blocks):
             comp_blocks[k+1][1] -= ob[1]
             break
 
-
-del_blocks = []
 found_ids = []
 
 sum = 0
